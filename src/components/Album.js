@@ -59,28 +59,70 @@ class Album extends Component {
             photos: galleries
         };
         this.state = {
-            gallery: null
+            gallery: 0,
         }
     }
 
+    openGallery(i) {
+        this.setState({
+            gallery: i
+        });
+    }
+
     render() {
-        return (
-            <div className='row'>
-                { this.galleries.titles.map((el, i) => {
-                    return (
-                        <div className='col-3' key={ i } >
-                            <div className='card'>
-                                <img className='card-img-top' src={ process.env.PUBLIC_URL + this.galleries.photos[i][0] } alt={ el + ' cover'} />
-                                <div className='card-body'>
-                                    <h4 className='card-title'>{ el }</h4>
+        if (this.state.gallery === null) {
+            return (
+                <div className='row'>
+                    { this.galleries.titles.map((el, i) => {
+                        return (
+                            <div className='col-3' key={ i }>
+                                <div className='card' onClick={() => this.openGallery(i)}>
+                                    <img className='card-img-top'
+                                         src={ process.env.PUBLIC_URL + this.galleries.photos[i][0] }
+                                         alt={ el + ' cover'} />
+                                    <div className='card-body'>
+                                        <h4 className='card-title'>{ el }</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    );
-                }) }
-            </div>
-        );
+                        );
+                    }) }
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <div className='row'>
+                        <button type="button"
+                                className="close h1"
+                                aria-label="Close"
+                                onClick={ () => this.openGallery(null)}
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h2 className='col-11'>{ this.galleries.titles[this.state.gallery] }</h2>
+                        { this.galleries.photos[this.state.gallery].map((el, i) => {
+                            return (
+                                <div className='col-3' key={ i }>
+                                    <Photo file={ this.galleries.photos[this.state.gallery][i] }/>
+                                </div>
+                            );
+                        }) }
+                    </div>
+                </div>
+            );
+        }
     }
 }
+
+function Photo(props) {
+    return (
+        <img className='img-fluid'
+             src={ process.env.PUBLIC_URL + props.file }
+             alt={ props.file + ' photo' }
+        />
+    );
+}
+
 
 export default Album;
