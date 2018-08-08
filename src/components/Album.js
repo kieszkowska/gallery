@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Lightbox from './Lightbox';
-import Photo from'./Photo';
+import { Link } from "react-router-dom";
 
 let food = [
     '/img/food/1.jpg', '/img/food/2.jpg', '/img/food/3.jpg', '/img/food/4.jpg', '/img/food/5.jpg', '/img/food/6.jpg',
@@ -30,78 +29,26 @@ class Album extends Component {
             titles: ['Food', 'Interior', 'Landscape', 'Portraits'],
             photos: galleries
         };
-        this.state = {
-            gallery: null,
-            lightbox: null
-        };
-
-        this.changeLightboxPhoto = this.changeLightboxPhoto.bind(this);
-    }
-
-    openGallery(i) {
-        this.setState({
-            gallery: i
-        });
-
-        if (i === null) {
-            this.setState({
-                lightbox: i
-            });
-        }
-    }
-
-    changeLightboxPhoto(i) {
-        this.setState({
-            lightbox: i
-        });
     }
 
     render() {
-        if (this.state.gallery === null) {
-            return (
-                <div className='row'>
-                    { this.galleries.titles.map((el, i) => {
-                        return (
-                            <div className='col-3 albumCover' key={ i } onClick={() => this.openGallery(i)}>
+        return (
+            <div className='row'>
+                { this.galleries.titles.map((el, i) => {
+                    return (
+                        <div className='col-3 albumCover' key={ i }>
+                            <Link to={{ pathname: '/gallery', state: { photos: this.galleries.photos[i], title: el } }} className="link">
                                 <img className='img-fluid cover'
                                      src={ process.env.PUBLIC_URL + this.galleries.photos[i][0] }
                                      alt={ el + ' cover'}
                                 />
-                                <span className='p-2'>{ el }</span>
-                            </div>
-                        );
-                    }) }
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <div className='row'>
-                        <button type="button"
-                                className="close"
-                                aria-label="Close"
-                                onClick={ () => this.openGallery(null)}
-                        >
-                            <span className='h1' aria-hidden="true">&times;</span>
-                        </button>
-
-                        <h2 className='col-11'>{ this.galleries.titles[this.state.gallery] }</h2>
-                        { this.galleries.photos[this.state.gallery].map((el, i) => {
-                            return (
-                                <div className='col-3' key={ i } onClick={ () => this.changeLightboxPhoto(i) }>
-                                    <Photo file={ this.galleries.photos[this.state.gallery][i] }/>
-                                </div>
-                            );
-                        }) }
-                    </div>
-
-                    <Lightbox photos={ this.galleries.photos[this.state.gallery] }
-                              index={ this.state.lightbox }
-                              handler={ this.changeLightboxPhoto }
-                    />
-                </div>
-            );
-        }
+                            </Link>
+                            <span className='p-2'>{ el }</span>
+                        </div>
+                    );
+                }) }
+            </div>
+        );
     }
 }
 

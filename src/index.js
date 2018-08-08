@@ -6,4 +6,6 @@ import 'bootstrap/dist/css/bootstrap-grid.css';
 import App from './App';
 import './style/main.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render((
+    <App />
+), document.getElementById('root'));

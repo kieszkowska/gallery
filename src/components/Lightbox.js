@@ -14,7 +14,7 @@ class Lightbox extends Component {
                     </div>
 
                     <div className='col-1 text-center' onClick={ () => this.previousPhoto() }>
-                        <span className="fas fa-chevron-left text-black-50 h1"></span>
+                        <span className="fas fa-chevron-left text-black-50 h1">{ null }</span>
                     </div>
 
                     <div className='col-10 justify-content-between align-content-center'>
@@ -22,7 +22,7 @@ class Lightbox extends Component {
                     </div>
 
                     <div className='col-1 text-center' onClick={ () => this.nextPhoto() }>
-                        <span className="fas fa-chevron-right text-black-50 h1"></span>
+                        <span className="fas fa-chevron-right text-black-50 h1">{ null }</span>
                     </div>
 
                 </div>
