@@ -36,7 +36,7 @@ class Album extends Component {
             <div className='row'>
                 { this.galleries.titles.map((el, i) => {
                     return (
-                        <div className='col-3 albumCover' key={ i }>
+                        <div className='col-12 col-sm-6 col-md-4 col-lg-3 albumCover' key={ i }>
                             <Link to={{ pathname: '/gallery', state: { photos: this.galleries.photos[i], title: el } }} className="link">
                                 <img className='img-fluid cover'
                                      src={ process.env.PUBLIC_URL + this.galleries.photos[i][0] }
