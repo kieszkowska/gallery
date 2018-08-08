@@ -37,11 +37,15 @@ class Lightbox extends Component {
     }
 
     previousPhoto() {
-        this.props.handler(this.props.index - 1);
+        let newVal = this.props.index === 0 ? this.props.photos.length - 1 : this.props.index - 1;
+        console.log(newVal);
+        this.props.handler(newVal);
     }
 
     nextPhoto() {
-        this.props.handler(this.props.index + 1);
+        let newVal = this.props.index === this.props.photos.length - 1 ? 0 : this.props.index + 1;
+        console.log(newVal);
+        this.props.handler(newVal);
     }
 
     closeLightbox() {
