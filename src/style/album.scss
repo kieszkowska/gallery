@@ -4,17 +4,6 @@
         cursor: pointer;
     }
 
-    img {
-        transition: all 0.5s ease;
-        box-shadow: 0 2px 6px 0 #AAA;
-        opacity: 0.8;
-
-        &:hover {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-    }
-
     span {
         font-size: 1.3em;
         line-height: 2.3em;

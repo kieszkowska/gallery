@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin-ext');
 @import "variables.scss";
 @import "album.scss";
+@import "images.scss";
 
 body {
     font-family: 'Roboto', sans-serif;
 }
+ h1 {
+     color: lighten(black, 25);
+ }
