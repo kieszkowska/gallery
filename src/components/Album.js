@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Lightbox from './Lightbox';
+import Photo from'./Photo';
 
 let food = [
     '/img/food/1.jpg',
@@ -60,8 +61,8 @@ class Album extends Component {
             photos: galleries
         };
         this.state = {
-            gallery: 0,
-            lightbox: 5
+            gallery: null,
+            lightbox: null
         };
 
         this.changeLightboxPhoto = this.changeLightboxPhoto.bind(this);
@@ -117,6 +118,7 @@ class Album extends Component {
                         >
                             <span className='h1' aria-hidden="true">&times;</span>
                         </button>
+                        
                         <h2 className='col-11'>{ this.galleries.titles[this.state.gallery] }</h2>
                         { this.galleries.photos[this.state.gallery].map((el, i) => {
                             return (
@@ -126,6 +128,7 @@ class Album extends Component {
                             );
                         }) }
                     </div>
+
                     <Lightbox photos={ this.galleries.photos[this.state.gallery] }
                               index={ this.state.lightbox }
                               handler={ this.changeLightboxPhoto }
@@ -135,15 +138,5 @@ class Album extends Component {
         }
     }
 }
-
-function Photo(props) {
-    return (
-        <img className='img-fluid'
-             src={ process.env.PUBLIC_URL + props.file }
-             alt={ props.file + ' photo' }
-        />
-    );
-}
-
 
 export default Album;
