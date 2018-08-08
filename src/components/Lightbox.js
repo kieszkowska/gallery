@@ -7,22 +7,26 @@ class Lightbox extends Component {
             return (
                 <div className='row lightbox'>
 
-                    <div className='col-12'>
+                    <div className='vh-100 col-auto text-center d-flex flex-column justify-content-center chevron'
+                         onClick={ () => this.previousPhoto() }
+                    >
+                        <span className="fas fa-chevron-left text-black h1">{ null }</span>
+                    </div>
+
+                    <div className='vh-100 col justify-content-between align-content-center d-flex justify-content-center align-content-center img-container'>
+                        <img className='img-fluid lightbox-img' src={ this.props.photos[this.props.index] } alt=' ' />
+                    </div>
+
+                    <div className='vh-100 col-auto text-center d-flex flex-column justify-content-center chevron'
+                         onClick={ () => this.nextPhoto() }
+                    >
+                        <span className="fas fa-chevron-right text-black h1">{ null }</span>
+                    </div>
+
+                    <div className='col-auto mr-4'>
                         <button type="button" className="close" aria-label="Close" onClick={ () => this.closeLightbox() }>
                             <span className='display-4' aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-
-                    <div className='col-1 text-center' onClick={ () => this.previousPhoto() }>
-                        <span className="fas fa-chevron-left text-black-50 h1">{ null }</span>
-                    </div>
-
-                    <div className='col-10 justify-content-between align-content-center'>
-                        <img className='img-fluid' src={ this.props.photos[this.props.index] } alt=' ' />
-                    </div>
-
-                    <div className='col-1 text-center' onClick={ () => this.nextPhoto() }>
-                        <span className="fas fa-chevron-right text-black-50 h1">{ null }</span>
                     </div>
 
                 </div>

@@ -34,13 +34,15 @@ class Gallery extends Component {
                     </Link>
 
                     <h2 className='col-11'>{ this.state.title }</h2>
-                    { this.state.photos.map((el, i) => {
-                        return (
-                            <div className='col-3' key={ i } onClick={ () => this.changeLightboxPhoto(i) }>
-                                <Photo file={ el } />
-                            </div>
-                        );
-                    }) }
+                    <div className='col-12 masonry'>
+                        { this.state.photos.map((el, i) => {
+                            return (
+                                <div key={ i } onClick={ () => this.changeLightboxPhoto(i) }>
+                                    <Photo file={ el } />
+                                </div>
+                            );
+                        }) }
+                    </div>
                 </div>
 
                 <Lightbox photos={ this.state.photos }
