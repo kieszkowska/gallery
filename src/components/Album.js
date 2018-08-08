@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Lightbox from './Lightbox';
 
 let food = [
     '/img/food/1.jpg',
@@ -60,12 +61,27 @@ class Album extends Component {
         };
         this.state = {
             gallery: 0,
-        }
+            lightbox: 5
+        };
+
+        this.changeLightboxPhoto = this.changeLightboxPhoto.bind(this);
     }
 
     openGallery(i) {
         this.setState({
             gallery: i
+        });
+
+        if (i === null) {
+            this.setState({
+                lightbox: i
+            });
+        }
+    }
+
+    changeLightboxPhoto(i) {
+        this.setState({
+            lightbox: i
         });
     }
 
@@ -79,7 +95,8 @@ class Album extends Component {
                                 <div className='card' onClick={() => this.openGallery(i)}>
                                     <img className='card-img-top'
                                          src={ process.env.PUBLIC_URL + this.galleries.photos[i][0] }
-                                         alt={ el + ' cover'} />
+                                         alt={ el + ' cover'}
+                                    />
                                     <div className='card-body'>
                                         <h4 className='card-title'>{ el }</h4>
                                     </div>
@@ -94,21 +111,25 @@ class Album extends Component {
                 <div>
                     <div className='row'>
                         <button type="button"
-                                className="close h1"
+                                className="close"
                                 aria-label="Close"
                                 onClick={ () => this.openGallery(null)}
                         >
-                            <span aria-hidden="true">&times;</span>
+                            <span className='h1' aria-hidden="true">&times;</span>
                         </button>
                         <h2 className='col-11'>{ this.galleries.titles[this.state.gallery] }</h2>
                         { this.galleries.photos[this.state.gallery].map((el, i) => {
                             return (
-                                <div className='col-3' key={ i }>
+                                <div className='col-3' key={ i } onClick={ () => this.changeLightboxPhoto(i) }>
                                     <Photo file={ this.galleries.photos[this.state.gallery][i] }/>
                                 </div>
                             );
                         }) }
                     </div>
+                    <Lightbox photos={ this.galleries.photos[this.state.gallery] }
+                              index={ this.state.lightbox }
+                              handler={ this.changeLightboxPhoto }
+                    />
                 </div>
             );
         }
