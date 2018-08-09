@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import Photo from'./Photo';
 
 let food = [
-    '/img/food/1.jpg', '/img/food/2.jpg', '/img/food/3.jpg', '/img/food/4.jpg', '/img/food/5.jpg', '/img/food/6.jpg',
-    '/img/food/7.jpg', '/img/food/8.jpg', '/img/food/9.jpg',
+    '/food/1.jpg', '/food/2.jpg', '/food/3.jpg', '/food/4.jpg', '/food/5.jpg', '/food/6.jpg', '/food/7.jpg',
+    '/food/8.jpg', '/food/9.jpg',
 ];
 let interior = [
-    './img/interior/1.jpg', './img/interior/2.jpg', './img/interior/3.jpg', './img/interior/4.jpg',
-    './img/interior/5.jpg', './img/interior/6.jpg', './img/interior/7.jpg', './img/interior/8.jpg',
-    './img/interior/9.jpg', './img/interior/10.jpg',
+    '/interior/1.jpg', '/interior/2.jpg', '/interior/3.jpg', '/interior/4.jpg', '/interior/5.jpg', '/interior/6.jpg',
+    '/interior/7.jpg', '/interior/8.jpg', '/interior/9.jpg', '/interior/10.jpg',
 ];
 let landscape = [
-    './img/landscape/1.jpg', './img/landscape/2.jpg', './img/landscape/3.jpg', './img/landscape/4.jpg',
-    './img/landscape/5.jpg', './img/landscape/6.jpg', './img/landscape/7.jpg', './img/landscape/8.jpg',
-    './img/landscape/9.jpg', './img/landscape/10.jpg', './img/landscape/11.jpg', './img/landscape/12.jpg',
+    '/landscape/1.jpg', '/landscape/2.jpg', '/landscape/3.jpg', '/landscape/4.jpg', '/landscape/5.jpg',
+    '/landscape/6.jpg', '/landscape/7.jpg', '/landscape/8.jpg', '/landscape/9.jpg', '/landscape/10.jpg',
+    '/landscape/11.jpg', '/landscape/12.jpg',
 ];
 let portraits = [
-    './img/portraits/1.jpg', './img/portraits/2.jpg', './img/portraits/3.jpg', './img/portraits/4.jpg',
-    './img/portraits/5.jpg', './img/portraits/6.jpg', './img/portraits/7.jpg', './img/portraits/8.jpg',
-    './img/portraits/9.jpg', './img/portraits/10.jpg',
+    '/portraits/1.jpg', '/portraits/2.jpg', '/portraits/3.jpg', '/portraits/4.jpg', '/portraits/5.jpg',
+    '/portraits/6.jpg', '/portraits/7.jpg', '/portraits/8.jpg', '/portraits/9.jpg', '/portraits/10.jpg',
 ];
 let galleries = [food, interior, landscape, portraits];
 
@@ -38,9 +37,8 @@ class Album extends Component {
                     return (
                         <div className='col-12 col-sm-6 col-md-4 col-lg-3 albumCover' key={ i }>
                             <Link to={{ pathname: '/gallery', state: { photos: this.galleries.photos[i], title: el } }} className="link">
-                                <img className='img-fluid cover'
-                                     src={ process.env.PUBLIC_URL + this.galleries.photos[i][0] }
-                                     alt={ el + ' cover'}
+                                <Photo srcPreload={ '/img/small' + this.galleries.photos[i][0] }
+                                       srcLoaded={ '/img' + this.galleries.photos[i][0] }
                                 />
                             </Link>
                             <span className='p-2'>{ el }</span>

@@ -14,7 +14,7 @@ class Lightbox extends Component {
                     </div>
 
                     <div className='vh-100 col justify-content-between align-content-center d-flex justify-content-center align-content-center img-container'>
-                        <img className='img-fluid lightbox-img' src={ this.props.photos[this.props.index] } alt=' ' />
+                        <img className='img-fluid lightbox-img' src={ '/img' + this.props.photos[this.props.index] } alt=' ' />
                     </div>
 
                     <div className='vh-100 col-auto text-center d-flex flex-column justify-content-center chevron'

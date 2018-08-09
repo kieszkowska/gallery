@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Photo(props) {
-    return (
-        <img className='img-fluid'
-             src={ process.env.PUBLIC_URL + props.file }
-             alt={ props.file + ' photo' }
-        />
-    );
+class Photo extends Component {
+
+    constructor(props) {
+        super(props);
+        this.fullSizeImg = null;
+    }
+
+    componentDidMount() {
+        const loaderImg = new Image();
+        loaderImg.src = this.props.srcLoaded;
+        loaderImg.onload = () => {
+            //TODO wtf...
+            if (this.fullSizeImg !== null) {
+                this.fullSizeImg.setAttribute('style', `background-image: url('${this.props.srcLoaded}')`);
+                this.fullSizeImg.classList.add('image-fade-in');
+            }
+        }
+    };
+
+    render() {
+        return (
+            <div className="image-container">
+                <div className="image-loaded" ref={imageLoadedElem => this.fullSizeImg = imageLoadedElem}>
+                </div>
+                <div className="image-preload" style={{ backgroundImage: `url('${this.props.srcPreload}')` }}>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default Photo;
