@@ -4,6 +4,7 @@
 @import "images.scss";
 @import "gallery.scss";
 @import "lightbox.scss";
+@import "animations.scss";
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -15,4 +16,8 @@ h1, h2 {
 
 img, svg {
     user-select: none;
+}
+
+.App {
+    margin: 0 75px !important;
 }

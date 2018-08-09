@@ -7,8 +7,8 @@ class Gallery extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: this.props.location.state.title,
-            photos: this.props.location.state.photos,
+            title: this.props.history.location.state.title,
+            photos: this.props.history.location.state.photos,
             lightbox: null
         };
         this.changeLightboxPhoto = this.changeLightboxPhoto.bind(this);
@@ -34,6 +34,7 @@ class Gallery extends Component {
                     </Link>
 
                     <h2 className='col-11'>{ this.state.title }</h2>
+
                     <div className='col-12 masonry'>
                         { this.state.photos.map((el, i) => {
                             return (
