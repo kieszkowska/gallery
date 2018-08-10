@@ -3,7 +3,7 @@
 
 ### Installation
 
-For development use:\
+For development use run:\
 `npm install` \
 `npm run start` \
 \
