@@ -12,37 +12,53 @@ class Lightbox extends Component {
     }
 
     render() {
-        // if (this.props.index !== null) {
-            return (
-                <div className='row' id='lightbox'>
+        return (
+            <div className='vh-100 row' id='lightbox' onTouchMove={ (e) => this.touchHandler(e) }>
 
-                    <div className='vh-100 col-auto text-center d-flex flex-column justify-content-center chevron'
+                <div className='vh-100 col-auto text-center flex-column justify-content-center chevron d-none d-md-flex'
+                     onClick={ () => this.previousPhoto() }
+                >
+                    <span className="fas fa-chevron-left text-black h1">{ null }</span>
+                </div>
+
+                <div className='col d-flex justify-content-center align-content-center img-container lightbox-container'>
+                    <div className='text-center d-flex align-items-center chevron d-md-none'
                          onClick={ () => this.previousPhoto() }
                     >
                         <span className="fas fa-chevron-left text-black h1">{ null }</span>
                     </div>
 
-                    <div className='col d-flex justify-content-center align-content-center img-container'>
-                        <img className='img-fluid lightbox-img' id='lightbox-img' src={ '/img' + this.props.photos[this.props.index] } alt=' ' />
-                    </div>
+                    <img className='img-fluid lightbox-img'
+                         id='lightbox-img'
+                         src={ '/img' + this.props.photos[this.props.index] }
+                         alt=' '
+                    />
+                    <button type="button" className="close d-md-none" aria-label="Close" onClick={ () => this.closeLightbox() }>
+                        <span className='display-4' aria-hidden="true">&times;</span>
+                    </button>
 
-                    <div className='vh-100 col-auto text-center d-flex flex-column justify-content-center chevron'
+                    <div className='text-center d-flex align-items-center chevron d-md-none'
                          onClick={ () => this.nextPhoto() }
                     >
                         <span className="fas fa-chevron-right text-black h1">{ null }</span>
                     </div>
 
-                    <div className='col-auto mr-4'>
-                        <button type="button" className="close" aria-label="Close" onClick={ () => this.closeLightbox() }>
-                            <span className='display-4' aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
                 </div>
-            );
-        // } else {
-        //     return (null);
-        // }
+
+                <div className='vh-100 col-auto text-center flex-column justify-content-center chevron d-none d-md-flex'
+                     onClick={ () => this.nextPhoto() }
+                >
+                    <span className="fas fa-chevron-right text-black h1">{ null }</span>
+                </div>
+
+                <div className='col-12 col-md-auto mr-4 d-none d-md-block'>
+                    <button type="button" className="close" aria-label="Close" onClick={ () => this.closeLightbox() }>
+                        <span className='display-4' aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            </div>
+        );
     }
 
     previousPhoto() {
@@ -58,6 +74,10 @@ class Lightbox extends Component {
     closeLightbox() {
         this.props.handler(null);
     }
+
+    touchHandler(e) {
+        console.log(e.bubbles);
+    }
 }
 
 function slideDown(el, h) {
@@ -68,7 +88,7 @@ function slideDown(el, h) {
         setTimeout(function () {
             element.style.top = top + 'vh';
             slideDown(el, top);
-        }, 1)
+        }, 0.1)
     }
 }
 
