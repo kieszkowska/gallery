@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header(props) {
+function Header() {
     return (
         <h1 className='my-5'>Gallery</h1>
     );

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Lightbox extends Component {
 
     componentDidUpdate(prevProps) {
+        // Show and hide lightbox
         if (prevProps.index === null && this.props.index !== null) {
             slideDown('lightbox', -100);
         } else if (prevProps.index !== null && this.props.index === null) {
@@ -13,7 +14,7 @@ class Lightbox extends Component {
 
     render() {
         return (
-            <div className='vh-100 row' id='lightbox' onTouchMove={ (e) => this.touchHandler(e) }>
+            <div className='vh-100 row' id='lightbox'>
 
                 <div className='vh-100 col-auto text-center flex-column justify-content-center chevron d-none d-md-flex'
                      onClick={ () => this.previousPhoto() }
@@ -73,10 +74,6 @@ class Lightbox extends Component {
 
     closeLightbox() {
         this.props.handler(null);
-    }
-
-    touchHandler(e) {
-        console.log(e.bubbles);
     }
 }
 

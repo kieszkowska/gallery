@@ -11,7 +11,6 @@ class Photo extends Component {
         const loaderImg = new Image();
         loaderImg.src = this.props.srcLoaded;
         loaderImg.onload = () => {
-            //TODO wtf...
             if (this.fullSizeImg !== null) {
                 this.fullSizeImg.setAttribute('style', `background-image: url('${this.props.srcLoaded}')`);
                 this.fullSizeImg.classList.add('image-fade-in');
@@ -22,7 +21,7 @@ class Photo extends Component {
     render() {
         return (
             <div className="image-container">
-                <div className="image-loaded" ref={imageLoadedElem => this.fullSizeImg = imageLoadedElem}>
+                <div className="image-loaded" ref={ imageLoaded => this.fullSizeImg = imageLoaded }>
                 </div>
                 <div className="image-preload" style={{ backgroundImage: `url('${this.props.srcPreload}')` }}>
                 </div>
