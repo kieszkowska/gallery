@@ -9,7 +9,7 @@ class App extends Component {
 
     render() {
         const currentKey = window.location.pathname.split('/')[1] || '/';
-        const timeout = { enter: 500, exit: 400 };
+        const timeout = { enter: 500, exit: 300 };
         return (
             <div className="App container">
                 <Header />
@@ -19,7 +19,7 @@ class App extends Component {
                             <Switch location={window.location}>
                                 <Route exact path="/" component={ Album } />
                                 <Route path="/gallery" component={ Gallery } />
-                                <Route render={() => <div>Not Found</div>} />
+                                <Route render={() => <h4>404 Not Found</h4>} />
                             </Switch>
                         </section>
                     </CSSTransition>
