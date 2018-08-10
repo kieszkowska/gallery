@@ -1,7 +1,7 @@
 # Gallery
 #### Gallery app with albums and lightbox
 
-####[Demo](http://gallery.kieszkowska.it/)
+[Demo](http://gallery.kieszkowska.it/)
 
 ### Installation
 
